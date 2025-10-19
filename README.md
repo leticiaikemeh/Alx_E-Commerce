@@ -121,19 +121,7 @@ The API is now available at `http://127.0.0.1:8000/`.
 
 🔐 Register
 
-**Example: Register**
-
-Endpoint
-POST /api/accounts/register/
-Content-Type: application/json
-
-Request Body
-Field	Type	Required	Notes
-username	string	yes	Must be unique; 3–150 chars recommended
-email	string	no	Must be unique if provided
-password	string	yes	Min 8 chars (validated server-side)
-
-Example
+**Example**
 
 ```http
 POST /api/accounts/register/
@@ -166,8 +154,9 @@ Content-Type: application/json
 { "username": ["A user with that username already exists."] }
 ```
 
-**Example: Login**
+🔐 Login
 
+**Example**
 ```http
 POST /api/auth/login/
 Content-Type: application/json
