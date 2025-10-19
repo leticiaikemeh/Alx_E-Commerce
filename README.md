@@ -119,6 +119,53 @@ The API is now available at `http://127.0.0.1:8000/`.
 * **Refresh**: `POST /api/auth/refresh/`
 * **Current user**: `GET/PATCH /api/accounts/me/` (requires `Authorization: Bearer <access>`)
 
+🔐 Register
+
+**Example: Register**
+
+Endpoint
+POST /api/accounts/register/
+Content-Type: application/json
+
+Request Body
+Field	Type	Required	Notes
+username	string	yes	Must be unique; 3–150 chars recommended
+email	string	no	Must be unique if provided
+password	string	yes	Min 8 chars (validated server-side)
+
+Example
+
+```http
+POST /api/accounts/register/
+Content-Type: application/json
+
+{
+  "username": "myk",
+  "email": "myk@example.com",
+  "password": "pass12345"
+}
+```
+
+**Responses**
+
+201 Created
+```json
+{
+  "id": 7,
+  "username": "myk",
+  "email": "myk@example.com",
+  "is_staff": false
+}
+```
+
+400 Bad Request (examples)
+```json
+{ "password": ["Ensure this field has at least 8 characters."] }
+```
+```json
+{ "username": ["A user with that username already exists."] }
+```
+
 **Example: Login**
 
 ```http
